@@ -1,0 +1,48 @@
+body {
+	background-image:url(https://media.beam.usnews.com/2e/e9/5c2afb714756b321797f9e90faa3/160403circleworldreport-design.svg);
+	background-size: cover;
+	font-family: 'Libre Baskerville', 'Playfair Display', serif;
+	background-color: #18345d;
+	color:white;
+	font-weight: bold;
+	text-align:center;
+	font-size: 32px;
+}
+
+
+.button-refresh {
+	width:120px;
+	height:40px;
+	font-size: 24px;
+/*	font-weight:bold;*/
+	border-radius: 25px;
+	border: red;
+	background-color: red;
+	color:white;
+}
+
+
+#container {
+	width:100%;
+	height:300px;
+	color:white;
+	display:flex;
+	margin-top:80px;
+}
+
+#third {
+	width:33.33%;
+	margin:30px;
+	background-color: red;
+	border-radius: 25px;
+	align-self: center;
+	padding:30px;
+}
+
+#date_time {
+	color:white;
+	font-size: 16px;
+}
+
+
+

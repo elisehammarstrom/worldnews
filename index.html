@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random World News generator</title>
+	<link rel="stylesheet" type="text/css" href="guardian.css">
+	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Playfair+Display" rel="stylesheet">
+</head>
+<body>
+	<h1>World news, randomized.</h1>
+	<button class="button-refresh" onclick="window.location.reload();">Refresh</button>
+
+	<div id="container"></div>
+
+	<script>
+		// get API assign to variable url
+		var url ='https://content.guardianapis.com/search?section=world&page-size=100&api-key=54ab737a-1ab5-4b29-8fe3-5e56565f00ac';
+
+		fetch (url)
+
+			.then(function(response) {
+				return response.json();
+			})
+			// do this with the data
+			.then(function(response){
+
+				// var sortArray = [];
+
+				var todaysArray = [];
+
+				var todayDate = new Date();
+
+				//skaffar alla objekts publiceringsdatum och sedan sorterar ut de med dagens datum. 
+				for (var i=0; i<response.response.results.length; i++) {
+					var d = new Date(response.response.results[i].webPublicationDate);
+					// trycker in objekt som överensstämmer med dagens datum in i en ny array, todaysArray. 
+					if ( (d.getDate() ) === ( todayDate.getDate() )  ) {
+						todaysArray.push(response.response.results[i]);
+					}	
+				}
+
+				console.log(todaysArray);
+				//this randomizes contents of array
+				var sorted;
+				function randomizeSort() {
+					todaysArray.sort(function(a, b) {
+						sorted = 0.5 - Math.random();
+						return sorted;
+					});
+				}
+
+				console.log(todaysArray);
+
+				randomizeSort();
+
+				var container = document.getElementById('container');
+				var i= 0;
+				while (i<3 ){
+					var d = new Date(todaysArray[i].webPublicationDate);
+					d.getHours();
+					d.getMinutes();
+					var month = d.getMonth()+1;
+					d.getDate();
+					d.getFullYear();
+					container.innerHTML += '<div id="third">' + todaysArray[i].webTitle + '<p id="date_time">' + d.getHours() + ':' + d.getMinutes()+ '<br>' + d.getFullYear() + '-' + month + '-' + d.getDate() + '</p>' + '</div>';
+					i++;
+				}
+
+			})
+	</script>
+
+
+
+</body>
+</html>
